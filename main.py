@@ -88,8 +88,6 @@ projections_button.place(x=150, y=100)  # Adjust x and y coordinates
 label = tk.Label(window, text="Welcome to our website", bg="light blue")
 label.pack()
 
-
-
 # Create a search bar (entry widget)
 search_entry = tk.Entry(window, width=20, font=button_font)
 # Adjust the coordinates as needed
