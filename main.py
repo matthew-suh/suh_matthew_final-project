@@ -23,6 +23,9 @@ from fantasydata import *
 # from scoresdata import *
 
 import tkinter as tk
+from tkinter import Canvas, Frame, Scrollbar
+import pandas as pd
+
 
 
 def on_fantasy_button_click():
@@ -32,6 +35,82 @@ def on_fantasy_button_click():
     search_entry.place(x=800, y=50)  # Adjust x and y coordinates for the search bar
     create_fantasy_boxes()
     label.after(3000, reset_label_text2)
+
+    # Loading data into stats page
+    load_data_button = tk.Button(window, text="Load Data", command=load_data, font=button_font, width=10, height=3, bg="light blue")
+    load_data_button.place(x=50, y=100)  # Adjust coordinates
+
+def reset_label_text2():
+    label.config(text="Welcome to Team Statistics", bg="white")
+
+
+def toggle_column():
+    # Add your code here to toggle between different columns
+    # For example, switch between 'Name' and 'Value'
+    # This is a simple toggle; you can extend it based on your requirements
+    current_column = label_var.get()
+    
+    if current_column == 'Name':
+        label_var.set('Value')
+    else:
+        label_var.set('Name')
+    
+    update_labels()
+
+def update_labels(event=None):
+    current_column = label_var.get()
+
+    # Destroy existing labels and canvas
+    for widget in window.winfo_children():
+        if isinstance(widget, (tk.Label, Canvas, Scrollbar)):
+            widget.destroy()
+
+    # Create a canvas with a scrollbar
+    canvas = Canvas(window, width=900, height=600, bg="white")
+    canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+    scrollbar = Scrollbar(window, command=canvas.yview)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox('all')))
+    canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-1*(e.delta/120)), "units"))
+
+    
+
+    # Create a frame to hold the labels
+    frame = Frame(canvas, bg="white")
+    canvas.create_window((0, 0), window=frame, anchor='nw')
+
+    # Update labels based on the current column
+    for i, row in enumerate(data.itertuples()):
+        label_text = f"{current_column}: {getattr(row, current_column)}"
+        label = tk.Label(frame, text=label_text, font=button_font, bg="light gray", width=30, height=2)
+        label.grid(row=i, column=0, pady=5)
+
+    # Update the canvas scroll region after adding labels
+    canvas.update_idletasks()
+    canvas.configure(scrollregion=canvas.bbox('all'))
+
+
+def load_data():
+    # Add your code here to load data from a file
+    # For example, use pandas to read a CSV file
+    global data
+    data = pd.read_csv(r"C:\Users\Jack.Gately25\Downloads\2023 NFL Model (Data) - NFL Basic Back-End.csv")
+
+    # Update labels or other widgets with the loaded data
+    for i, row in enumerate(data.itertuples()):
+        label_name = tk.Label(window, text=f"Name: {row[1]}", font=button_font, bg="light gray", width=30, height=2)
+        label_value = tk.Label(window, text=f"Value: {row[2]}", font=button_font, bg="light gray", width=30, height=2)
+
+        label_name.place(x=50, y=250 + i * 50)  # Adjust coordinates
+        label_value.place(x=250, y=250 + i * 50)  # Adjust coordinates
+
+
+
+
+
 
 
 def reset_label_text2():
@@ -52,20 +131,19 @@ def reset_label_text():
 
 
 def create_fantasy_boxes():
-    box_texts = ["Points", "Passing", "Rushing", "FG", "Points Allowed", "Pass TD Allowed", "Rush TD Allowed"]
-    for i, text in enumerate(box_texts):
-        box = tk.Label(window, text=text, font=button_font, bg="light gray", width=15, height=2)
-        box.place(x=50, y=200 + i * 50)  # Adjust the y-coordinate to position the boxes
+    box_texts = ["PPG/F", "PASS TD/F", "RUSH TD/F", "FGM/F", "PPG/A", "PASS TD/A", "RUSH TD/A"]
+    
 
 
 def destroy_fantasy_boxes():
-    for widget in window.winfo_children():
+    for widget in window.winfo_children():  
         if "label" in str(widget):
             widget.destroy()
 
 
 # Create the main window
 window = tk.Tk()
+label_var = tk.StringVar(value='Name')
 window.title("My Python Window")
 window.geometry("1000x800")
 
@@ -88,6 +166,8 @@ projections_button.place(x=150, y=100)  # Adjust x and y coordinates
 label = tk.Label(window, text="Welcome to our website", bg="light blue")
 label.pack()
 
+
+
 # Create a search bar (entry widget)
 search_entry = tk.Entry(window, width=20, font=button_font)
 # Adjust the coordinates as needed
@@ -95,3 +175,5 @@ search_entry.place(x=800, y=50)
 
 # Start the main event loop
 window.mainloop()
+
+
