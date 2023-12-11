@@ -73,3 +73,4 @@ Inspiration, code snippets, etc.
 * [WageredOnTilt - YouTuber] (https://www.youtube.com/watch?v=Tuuc6QKchhU&t=417s)
 * [Nick Wan - YouTuber] (https://www.youtube.com/watch?v=3IA0V9UuoPc)
 * [W3Schools - Website] (https://www.w3schools.com/python/pandas/default.asp)
+* [TeamRankings] (https://www.teamrankings.com/nfl/team-stats/)
