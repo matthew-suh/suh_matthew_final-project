@@ -1,5 +1,12 @@
 # This file was created by: Roan Kher, Matthew Suh, and Jack Gately
-# Sources: Chris Bradfield, reviewed and optimized by ChatGPT
+# Sources:
+# * [ChatGPT] (https://chat.openai.com/)
+# * [Chris Bradfield - KidsCanCode] (https://kidscancode.org/)
+# * [WageredOnTilt - YouTuber] (https://www.youtube.com/watch?v=Tuuc6QKchhU&t=417s)
+# * [Nick Wan - YouTuber] (https://www.youtube.com/watch?v=3IA0V9UuoPc)
+# * [W3Schools - Website] (https://www.w3schools.com/python/pandas/default.asp)
+# * [TeamRankings] (https://www.teamrankings.com/nfl/team-stats/)
+
 
 
 # Title: 
@@ -97,7 +104,7 @@ def load_data():
     # Add your code here to load data from a file
     # For example, use pandas to read a CSV file
     global data
-    data = pd.read_csv(r"C:\Users\Jack.Gately25\Downloads\2023 NFL Model (Data) - NFL Basic Back-End.csv")
+    data = pd.read_csv(r"C:\Users\Matthew.Suh24\Downloads\2023 NFL Model (Data) - NFL Basic Back-End.csv")
 
     # Update labels or other widgets with the loaded data
     for i, row in enumerate(data.itertuples()):
