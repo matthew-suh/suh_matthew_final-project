@@ -33,7 +33,8 @@ GitHub Desktop, GitHub Website
 ```
 code blocks for commands
 ```
-
+* Run the code in VS Code
+* Once on the website, go to desired NFL statistics or NFL Projections
 
 
 ## Help
@@ -42,15 +43,15 @@ Any advise for common problems or issues.
 ```
 command to run if program contains helper info
 ```
-A
+
 
 ## Authors
 
 Contributors names and contact info
 
-Jack Gately '25 []
-Matthew Suh '24 [@matthew_suh_] (https://twitter.com/matthewsuh)
-Roan Kher '24 []
+Jack Gately '25 [jack.gately25@bcp.org]
+Matthew Suh '24 [matthew.suh24@bcp.org]
+Roan Kher '24 [roan.kher24@bcp.org]
 
 
 ## Version History
